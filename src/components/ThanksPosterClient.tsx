@@ -121,7 +121,20 @@ export default function ThanksPosterClient({ rsvp }: { rsvp: RsvpRecord }) {
           {details.map(([label, value]) => (
             <div key={label} className="flex justify-between gap-4 px-5 py-3">
               <dt className="font-semibold text-ink/60">{label}</dt>
-              <dd className="text-right font-extrabold">{value}</dd>
+              <dd className="text-right font-extrabold">
+                {label === "Where" ? (
+                  <a
+                    href={EVENT_CONFIG.venueMapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-ink/35 decoration-2 underline-offset-4 transition hover:text-luffy hover:decoration-luffy"
+                  >
+                    {value} ↗
+                  </a>
+                ) : (
+                  value
+                )}
+              </dd>
             </div>
           ))}
         </dl>

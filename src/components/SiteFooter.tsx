@@ -23,7 +23,14 @@ export default function SiteFooter() {
             <span className="mx-2 text-white/40">·</span>
             {EVENT_CONFIG.dateLong}
             <span className="mx-2 text-white/40">·</span>
-            {EVENT_CONFIG.venueDisplay}
+            <a
+              href={EVENT_CONFIG.venueMapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline-offset-4 hover:text-sun hover:underline"
+            >
+              {EVENT_CONFIG.venueDisplay}
+            </a>
           </p>
         </div>
         <Link

@@ -7,6 +7,7 @@ export const EVENT_CONFIG = {
   dateLong: "Sunday, December 6, 2026",
   venueName: "GDLS KUBO RESIDENCES",
   venueDisplay: "GDLS Kubo Residences",
+  venueMapUrl: "https://maps.app.goo.gl/J7jyT6yEiWi1Qfz9A",
   maxPlusOnes: 2,
 } as const;
 

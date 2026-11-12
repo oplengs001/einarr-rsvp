@@ -51,7 +51,15 @@ export default function HomePage() {
                   Where
                 </dt>
                 <dd className="mt-1 text-lg font-extrabold">
-                  {EVENT_CONFIG.venueDisplay}
+                  <a
+                    href={EVENT_CONFIG.venueMapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 underline decoration-ink/35 decoration-2 underline-offset-4 transition hover:text-luffy hover:decoration-luffy"
+                  >
+                    <span>{EVENT_CONFIG.venueDisplay}</span>
+                    <span className="text-xs font-bold text-wood">↗</span>
+                  </a>
                 </dd>
               </div>
             </dl>
