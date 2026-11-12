@@ -239,27 +239,36 @@ export default function SelfiePicker({ selfie, onChange }: SelfiePickerProps) {
       )}
 
       {!cameraOpen && selfie && (
-        <div className="flex flex-wrap items-center gap-4">
-          <img
-            src={selfie}
-            alt="Your selfie preview"
-            className="h-16 w-[77px] shrink-0 rounded-lg border-[3px] border-ink object-cover shadow-ink-sm ring-4 ring-sun"
-          />
-          <div className="min-w-0 flex-1">
-            <p className="text-sm font-extrabold text-ink">
-              Using your selfie on the poster
-            </p>
-            <p className="text-xs font-semibold text-ink/60">
-              Click any crew flag above to switch back.
-            </p>
+        <div className="flex flex-col gap-3.5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-3.5">
+            <img
+              src={selfie}
+              alt="Your selfie preview"
+              className="h-16 w-[77px] shrink-0 rounded-lg border-[3px] border-ink object-cover shadow-ink-sm ring-4 ring-sun"
+            />
+            <div className="min-w-0">
+              <p className="text-sm font-extrabold text-ink">
+                Using your selfie on the poster
+              </p>
+              <p className="mt-0.5 text-xs font-semibold text-ink/60">
+                Tap any crew flag above to switch back.
+              </p>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2.5">
             <button
               type="button"
               onClick={() => startCamera(facingMode)}
               className={actionBtn}
             >
               Retake
+            </button>
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className={actionBtn}
+            >
+              Upload
             </button>
             <button
               type="button"
