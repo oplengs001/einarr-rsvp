@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { EVENT_CONFIG } from "@/config/event";
+import BinksAudioPlayer from "@/components/BinksAudioPlayer";
 
 export const metadata: Metadata = {
   title: `${EVENT_CONFIG.honoreeDisplay}'s Christening — RSVP`,
@@ -26,7 +27,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="selection:bg-sun selection:text-ink">{children}</body>
+      <body className="selection:bg-sun selection:text-ink">
+        {children}
+        <BinksAudioPlayer />
+      </body>
     </html>
   );
 }
