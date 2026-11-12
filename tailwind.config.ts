@@ -47,9 +47,47 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-8px)" },
         },
+        "cloud-drift-a": {
+          "0%, 100%": { transform: "translate3d(0, 0, 0)" },
+          "50%": { transform: "translate3d(22px, -6px, 0)" },
+        },
+        "cloud-drift-b": {
+          "0%, 100%": { transform: "translate3d(0, 0, 0)" },
+          "50%": { transform: "translate3d(-20px, -8px, 0)" },
+        },
+        "wave-back": {
+          "0%, 100%": { transform: "translate3d(0, 0, 0)" },
+          "50%": { transform: "translate3d(0, -7px, 0)" },
+        },
+        "wave-front": {
+          "0%, 100%": { transform: "translate3d(0, 0, 0)" },
+          "50%": { transform: "translate3d(0, 7px, 0)" },
+        },
+        "ship-ride": {
+          "0%, 100%": {
+            transform: "translate3d(0, 0, 0) rotate(-1.8deg)",
+          },
+          "50%": {
+            transform: "translate3d(0, -8px, 0) rotate(2.4deg)",
+          },
+        },
+        "seagull-soar": {
+          "0%, 100%": {
+            transform: "translate3d(0, 0, 0)",
+          },
+          "50%": {
+            transform: "translate3d(16px, -10px, 0)",
+          },
+        },
       },
       animation: {
         drift: "drift 9s ease-in-out infinite",
+        "cloud-drift-a": "cloud-drift-a 16s ease-in-out infinite",
+        "cloud-drift-b": "cloud-drift-b 13s ease-in-out infinite",
+        "wave-back": "wave-back 5.4s ease-in-out infinite",
+        "wave-front": "wave-front 4.2s ease-in-out infinite",
+        "ship-ride": "ship-ride 4.6s ease-in-out infinite",
+        "seagull-soar": "seagull-soar 8s ease-in-out infinite",
       },
     },
   },

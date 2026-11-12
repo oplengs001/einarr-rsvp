@@ -109,7 +109,9 @@ export default function ThanksPosterClient({ rsvp }: { rsvp: RsvpRecord }) {
         </div>
 
         <h1 className="mt-5 font-display text-4xl leading-tight tracking-wide sm:text-5xl">
-          {attending ? "You're on the crew!" : "Thanks for letting us know"}
+          {attending
+            ? "SUUUPER! Welcome to the crew!"
+            : "Thanks for letting us know"}
         </h1>
         <p className="mt-3 text-lg text-ink/75">
           {attending
