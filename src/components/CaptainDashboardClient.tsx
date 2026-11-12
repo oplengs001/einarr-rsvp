@@ -181,7 +181,7 @@ export default function CaptainDashboardClient({
       return [
         escapeCsv(r.name),
         escapeCsv(r.epithet),
-        escapeCsv(r.avatar),
+        escapeCsv(r.avatar.startsWith("data:image/") ? "Selfie" : r.avatar),
         escapeCsv(r.attending === "yes" ? "YES" : "NO"),
         escapeCsv(r.plus_ones),
         escapeCsv(totalSeats),
@@ -443,6 +443,7 @@ export default function CaptainDashboardClient({
                     </thead>
                     <tbody className="divide-y-2 divide-ink/10 text-sm">
                       {filteredRecords.map((r) => {
+                        const isSelfie = r.avatar.startsWith("data:image/");
                         const avatarObj =
                           PIRATE_AVATARS.find((a) => a.id === r.avatar) ??
                           PIRATE_AVATARS[0];
@@ -455,14 +456,22 @@ export default function CaptainDashboardClient({
                           >
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-3">
-                                <Image
-                                  src={avatarObj.iconSrc}
-                                  alt={avatarObj.shortName}
-                                  width={36}
-                                  height={36}
-                                  unoptimized
-                                  className="h-9 w-9 shrink-0 rounded-lg border-2 border-ink object-cover"
-                                />
+                                {isSelfie ? (
+                                  <img
+                                    src={r.avatar}
+                                    alt={r.name}
+                                    className="h-9 w-9 shrink-0 rounded-lg border-2 border-ink object-cover"
+                                  />
+                                ) : (
+                                  <Image
+                                    src={avatarObj.iconSrc}
+                                    alt={avatarObj.shortName}
+                                    width={36}
+                                    height={36}
+                                    unoptimized
+                                    className="h-9 w-9 shrink-0 rounded-lg border-2 border-ink object-cover"
+                                  />
+                                )}
                                 <div>
                                   <Link
                                     href={`/thanks/${r.id}`}

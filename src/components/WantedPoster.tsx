@@ -80,6 +80,7 @@ export default function WantedPoster({
   attending,
   posterRef,
 }: WantedPosterProps) {
+  const isSelfie = avatarId.startsWith("data:image/");
   const avatar = PIRATE_AVATARS.find((a) => a.id === avatarId) ?? PIRATE_AVATARS[0];
   const displayedBounty = useCountUp(bounty);
 
@@ -102,15 +103,23 @@ export default function WantedPoster({
         </h3>
 
         <div className="mt-3 border-[3px] border-ink bg-[#111]">
-          <div className="relative aspect-[6/5]">
-            <Image
-              src={avatar.iconSrc}
-              alt={avatar.label}
-              fill
-              sizes="380px"
-              unoptimized
-              className="object-contain"
-            />
+          <div className="relative aspect-[6/5] overflow-hidden">
+            {isSelfie ? (
+              <img
+                src={avatarId}
+                alt={displayName}
+                className="h-full w-full object-cover sepia-[0.16] contrast-[1.04]"
+              />
+            ) : (
+              <Image
+                src={avatar.iconSrc}
+                alt={avatar.label}
+                fill
+                sizes="380px"
+                unoptimized
+                className="object-contain"
+              />
+            )}
           </div>
         </div>
 

@@ -14,7 +14,18 @@ const RsvpSchema = z.object({
     .max(60, "Whoa there! Keep your name under 60 characters, Captain."),
   epithet: z.string().trim().max(80).optional(),
   bounty: z.coerce.number().min(0).max(99_999_999_999).optional(),
-  avatar: z.string().trim().min(1).max(40).default("luffy"),
+  avatar: z
+    .string()
+    .trim()
+    .min(1)
+    .max(350_000, "Selfie image is too large; please try a smaller photo.")
+    .refine(
+      (val) =>
+        val.length <= 40 ||
+        /^data:image\/(jpeg|jpg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(val),
+      "Invalid flag or selfie image format."
+    )
+    .default("luffy"),
   attending: z.enum(["yes", "no"]),
   plus_ones: z.coerce
     .number()

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import confetti from "canvas-confetti";
 import WantedPoster from "@/components/WantedPoster";
+import SelfiePicker from "@/components/SelfiePicker";
 import {
   EVENT_CONFIG,
   PIRATE_AVATARS,
@@ -67,6 +68,7 @@ export default function RsvpInteractive() {
   const [customEpithet, setCustomEpithet] = useState<string | null>(null);
   const [editingEpithet, setEditingEpithet] = useState(false);
   const [avatarId, setAvatarId] = useState("luffy");
+  const [selfie, setSelfie] = useState<string | null>(null);
   const [attending, setAttending] = useState<AttendanceStatus>("yes");
   const [plusOnes, setPlusOnes] = useState(0);
   const [message, setMessage] = useState("");
@@ -95,7 +97,7 @@ export default function RsvpInteractive() {
         name: name.trim(),
         epithet: epithet.trim() || getEpithetForName(name, shuffle),
         bounty,
-        avatar: avatarId,
+        avatar: selfie ?? avatarId,
         attending,
         plus_ones: effectivePlusOnes,
         message: message.trim(),
@@ -129,7 +131,7 @@ export default function RsvpInteractive() {
           name={name}
           epithet={epithet}
           bounty={bounty}
-          avatarId={avatarId}
+          avatarId={selfie ?? avatarId}
           plusOnes={effectivePlusOnes}
           attending={attending}
         />
@@ -222,17 +224,20 @@ export default function RsvpInteractive() {
           </div>
         </Field>
 
-        <Field label="Choose your flag">
+        <Field label="Choose your flag or take a selfie">
           <div className="grid grid-cols-4 gap-3 sm:grid-cols-6" role="radiogroup">
             {PIRATE_AVATARS.map((av) => {
-              const selected = av.id === avatarId;
+              const selected = !selfie && av.id === avatarId;
               return (
                 <button
                   key={av.id}
                   type="button"
                   role="radio"
                   aria-checked={selected}
-                  onClick={() => setAvatarId(av.id)}
+                  onClick={() => {
+                    setAvatarId(av.id);
+                    setSelfie(null);
+                  }}
                   className="group flex flex-col items-center gap-1.5"
                 >
                   <span
@@ -262,10 +267,13 @@ export default function RsvpInteractive() {
               );
             })}
           </div>
-          <p className="mt-4 text-sm text-ink/70">
-            <span className="font-extrabold text-ink">{avatar.shortName}:</span>{" "}
-            {avatar.quote}
-          </p>
+          {!selfie && (
+            <p className="mt-4 text-sm text-ink/70">
+              <span className="font-extrabold text-ink">{avatar.shortName}:</span>{" "}
+              {avatar.quote}
+            </p>
+          )}
+          <SelfiePicker selfie={selfie} onChange={setSelfie} />
         </Field>
 
         <Field label="Will you be there?">
