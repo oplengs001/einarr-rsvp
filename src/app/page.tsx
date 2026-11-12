@@ -29,7 +29,7 @@ export default function HomePage() {
             <p className="mt-6 text-lg font-extrabold text-ink/80">
               You&apos;re invited to the christening of
             </p>
-            <h1 className="ink-title mt-3 text-7xl sm:text-9xl">
+            <h1 className="ink-title mt-3 text-[4.25rem] sm:text-9xl">
               {EVENT_CONFIG.honoreeDisplay}
             </h1>
             <p className="mx-auto mt-6 max-w-md text-lg font-semibold text-ink/75">
@@ -73,10 +73,10 @@ export default function HomePage() {
         </section>
 
         {/* RSVP */}
-        <section id="rsvp" className="bg-sea px-4 pb-24 pt-8 sm:px-6">
+        <section id="rsvp" className="bg-sea px-4 pb-20 pt-6 sm:px-6 sm:pb-24 sm:pt-8">
           <div className="mx-auto max-w-6xl">
-            <header className="mb-12 text-center">
-              <h2 className="ink-title text-5xl sm:text-6xl">Join the crew</h2>
+            <header className="mb-8 text-center sm:mb-12">
+              <h2 className="ink-title text-4xl sm:text-6xl">Join the crew</h2>
               <p className="mt-4 font-semibold text-white/75">
                 Fill in your details and we&apos;ll print your bounty poster.
               </p>

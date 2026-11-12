@@ -98,7 +98,7 @@ export default function WantedPoster({
           boxShadow: "inset 0 0 42px rgba(120, 80, 30, 0.32), 8px 8px 0 #1b1b1f",
         }}
       >
-        <h3 className="text-center text-[64px] font-black leading-none tracking-tight">
+        <h3 className="text-center text-[52px] font-black leading-none tracking-tight sm:text-[64px]">
           WANTED
         </h3>
 
@@ -144,11 +144,13 @@ export default function WantedPoster({
         )}
 
         <div className="mt-3 flex items-center gap-2">
-          <BerrySymbol className="h-7 w-6 shrink-0" />
-          <span className="text-[30px] font-black leading-none tabular-nums">
+          <BerrySymbol className="h-6 w-5 shrink-0 sm:h-7 sm:w-6" />
+          <span className="text-[24px] font-black leading-none tabular-nums sm:text-[30px]">
             {displayedBounty.toLocaleString("en-US")}
           </span>
-          <span className="ml-auto text-[30px] font-black leading-none">-</span>
+          <span className="ml-auto text-[24px] font-black leading-none sm:text-[30px]">
+            -
+          </span>
         </div>
 
         <div className="mt-3 flex items-end justify-between gap-3 border-t border-ink/30 pt-2">

@@ -124,9 +124,21 @@ export default function RsvpInteractive() {
     });
   };
 
+  // Prevent pressing Enter inside text inputs from submitting the RSVP early
+  const handleFormKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if (e.key === "Enter" && (e.target as HTMLElement).tagName === "INPUT") {
+      e.preventDefault();
+      if (editingEpithet) {
+        setEditingEpithet(false);
+      } else {
+        (e.target as HTMLInputElement).blur();
+      }
+    }
+  };
+
   return (
     <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
-      <div className="lg:sticky lg:top-8">
+      <div id="poster-preview" className="order-2 lg:order-1 lg:sticky lg:top-8">
         <WantedPoster
           name={name}
           epithet={epithet}
@@ -142,7 +154,8 @@ export default function RsvpInteractive() {
 
       <form
         onSubmit={handleSubmit}
-        className="space-y-9 rounded-2xl border-[3px] border-ink bg-paper p-6 shadow-ink-lg sm:p-8"
+        onKeyDown={handleFormKeyDown}
+        className="order-1 space-y-9 rounded-2xl border-[3px] border-ink bg-paper p-5 shadow-ink-lg sm:p-8 lg:order-2"
       >
         {/* Spam trap, hidden from people */}
         <div className="hidden" aria-hidden="true">
@@ -167,6 +180,7 @@ export default function RsvpInteractive() {
             placeholder="e.g. Marco Cruz"
             maxLength={55}
             autoComplete="name"
+            enterKeyHint="done"
             className="w-full rounded-lg border-[3px] border-ink bg-white px-4 py-3 text-lg font-bold text-ink outline-none transition placeholder:font-semibold placeholder:text-ink/35 focus:ring-4 focus:ring-sun/70"
           />
 
@@ -188,6 +202,7 @@ export default function RsvpInteractive() {
                 value={customEpithet ?? ""}
                 onChange={(e) => setCustomEpithet(e.target.value)}
                 maxLength={50}
+                enterKeyHint="done"
                 autoFocus
                 className="min-w-0 flex-1 rounded-md border-2 border-ink bg-white px-2 py-1 text-sm font-bold"
               />
@@ -379,6 +394,15 @@ export default function RsvpInteractive() {
         <button type="submit" disabled={isPending} className="btn-plank w-full">
           {isPending ? "Sending…" : "Send my RSVP"}
         </button>
+
+        <p className="text-center lg:hidden">
+          <a
+            href="#poster-preview"
+            className="text-sm font-extrabold text-ink/70 underline underline-offset-4 hover:text-luffy"
+          >
+            Preview your Wanted poster ↓
+          </a>
+        </p>
       </form>
     </div>
   );
