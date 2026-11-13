@@ -68,7 +68,11 @@ export default function ThanksPosterClient({ rsvp }: { rsvp: RsvpRecord }) {
         ] as [string, string][])
       : []),
     ["When", EVENT_CONFIG.dateLong],
-    ["Where", EVENT_CONFIG.venueDisplay],
+    [
+      "Baptismal",
+      `${EVENT_CONFIG.baptismalTime} · ${EVENT_CONFIG.baptismalVenue}`,
+    ],
+    ["Reception", `${EVENT_CONFIG.receptionTime} · ${EVENT_CONFIG.venueDisplay}`],
   ];
 
   return (
@@ -124,9 +128,13 @@ export default function ThanksPosterClient({ rsvp }: { rsvp: RsvpRecord }) {
             <div key={label} className="flex justify-between gap-4 px-5 py-3">
               <dt className="font-semibold text-ink/60">{label}</dt>
               <dd className="text-right font-extrabold">
-                {label === "Where" ? (
+                {label === "Baptismal" || label === "Reception" ? (
                   <a
-                    href={EVENT_CONFIG.venueMapUrl}
+                    href={
+                      label === "Baptismal"
+                        ? EVENT_CONFIG.baptismalMapUrl
+                        : EVENT_CONFIG.venueMapUrl
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
                     className="underline decoration-ink/35 decoration-2 underline-offset-4 transition hover:text-luffy hover:decoration-luffy"

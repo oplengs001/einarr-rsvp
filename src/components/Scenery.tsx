@@ -164,13 +164,13 @@ export function JollyRoger({
       data-gsap="jolly"
     >
       {/* Twin ropes descending from the top edge of the hero */}
-      <div className="mx-auto flex w-24 justify-between px-2 sm:w-28">
-        <div className="h-9 w-[5px] border-x-2 border-ink bg-[#c89a5b] shadow-sm sm:h-11" />
-        <div className="h-9 w-[5px] border-x-2 border-ink bg-[#c89a5b] shadow-sm sm:h-11" />
+      <div className="mx-auto flex w-20 justify-between px-2 sm:w-28">
+        <div className="h-5 w-[4px] border-x-2 border-ink bg-[#c89a5b] shadow-sm sm:h-9 sm:w-[5px]" />
+        <div className="h-5 w-[4px] border-x-2 border-ink bg-[#c89a5b] shadow-sm sm:h-9 sm:w-[5px]" />
       </div>
 
       {/* Weathered wooden signboard */}
-      <div className="relative -mt-1 flex h-[106px] w-36 items-center justify-center sm:h-[120px] sm:w-44">
+      <div className="relative -mt-1 flex h-[80px] w-28 items-center justify-center sm:h-[112px] sm:w-40">
         <svg
           viewBox="0 0 180 124"
           preserveAspectRatio="none"
@@ -222,18 +222,22 @@ export function JollyRoger({
           height={140}
           priority
           unoptimized
-          className="relative z-10 h-20 w-20 object-contain drop-shadow-[0_2px_0_rgba(27,27,31,0.3)] sm:h-24 sm:w-24"
+          className="relative z-10 h-14 w-14 object-contain drop-shadow-[0_2px_0_rgba(27,27,31,0.3)] sm:h-24 sm:w-24"
         />
       </div>
     </div>
   );
 }
 
-const TORN_MAP_PATH =
-  "M 14 10 L 48 9 L 55 16 L 62 9 L 120 10 L 126 15 L 132 10 L 210 9 L 217 16 L 224 9 L 340 10 L 347 17 L 354 10 L 430 11 L 437 16 L 443 10 L 515 9 L 522 17 L 530 9 L 590 8 L 596 14 L 604 9 L 626 10 L 624 28 L 618 36 L 625 45 L 620 64 L 626 73 L 618 84 L 624 96 L 622 110 L 580 112 L 574 105 L 567 112 L 505 111 L 499 106 L 492 112 L 415 113 L 409 105 L 402 113 L 320 112 L 314 106 L 307 113 L 230 113 L 223 105 L 216 113 L 84 112 L 78 105 L 71 113 L 14 113 L 18 94 L 11 83 L 17 71 L 10 58 L 18 45 L 12 30 Z";
+const TORN_MAP_DESKTOP_PATH =
+  "M 14 10 L 52 9 L 59 16 L 66 9 L 132 10 L 138 14 L 145 10 L 230 9 L 237 16 L 244 9 L 365 10 L 372 16 L 379 10 L 462 11 L 469 14 L 476 10 L 552 9 L 559 16 L 566 9 L 632 8 L 638 13 L 646 9 L 666 10 L 664 34 L 658 43 L 665 55 L 660 82 L 666 98 L 658 116 L 664 140 L 662 170 L 616 172 L 609 165 L 602 172 L 535 171 L 528 167 L 521 172 L 438 173 L 431 166 L 424 173 L 340 171 L 333 167 L 326 172 L 242 173 L 235 166 L 228 173 L 96 172 L 89 165 L 82 172 L 15 172 L 18 146 L 11 128 L 17 106 L 10 82 L 18 58 L 12 34 Z";
+
+const TORN_MAP_MOBILE_PATH =
+  "M 10 9 L 44 8 L 50 14 L 56 8 L 122 9 L 128 13 L 134 9 L 220 8 L 226 14 L 232 8 L 304 9 L 310 13 L 316 8 L 348 9 L 346 32 L 341 41 L 348 52 L 342 78 L 349 94 L 341 114 L 347 136 L 344 155 L 308 157 L 302 150 L 296 157 L 226 156 L 220 151 L 214 157 L 140 158 L 134 151 L 128 158 L 58 156 L 52 151 L 46 157 L 12 157 L 15 134 L 9 114 L 15 90 L 9 66 L 16 44 L 12 24 Z";
 
 /**
  * Hand-drawn torn treasure map / bounty parchment card for event details.
+ * Uses tailored horizontal SVG contours so V-notches stay unstretched on both mobile and desktop.
  */
 export function TornMapCard({
   children,
@@ -244,54 +248,112 @@ export function TornMapCard({
 }) {
   return (
     <div
-      className={`relative mx-auto w-full max-w-xl drop-shadow-[0_5px_0_rgba(27,27,31,0.22)] ${className}`}
+      className={`relative mx-auto w-full max-w-3xl drop-shadow-[0_5px_0_rgba(27,27,31,0.24)] ${className}`}
     >
+      {/* Mobile SVG (matches compact 2-col layout) */}
       <svg
-        viewBox="0 0 640 122"
+        viewBox="0 0 360 165"
         preserveAspectRatio="none"
-        className="pointer-events-none absolute inset-0 h-full w-full"
+        className="pointer-events-none absolute inset-0 h-full w-full sm:hidden"
         aria-hidden="true"
       >
         <defs>
-          <clipPath id="torn-map-clip">
-            <path d={TORN_MAP_PATH} />
+          <clipPath id="torn-map-clip-mobile">
+            <path d={TORN_MAP_MOBILE_PATH} />
           </clipPath>
-          <radialGradient id="torn-map-fill" cx="50%" cy="50%" r="65%">
-            <stop offset="0%" stopColor="#f6e9c9" />
-            <stop offset="65%" stopColor="#ebd4a4" />
+          <radialGradient id="torn-map-fill-mobile" cx="50%" cy="50%" r="65%">
+            <stop offset="0%" stopColor="#f7ebd0" />
+            <stop offset="68%" stopColor="#ecd5a4" />
+            <stop offset="100%" stopColor="#d9b679" />
+          </radialGradient>
+        </defs>
+        <g clipPath="url(#torn-map-clip-mobile)">
+          <rect
+            x="0"
+            y="0"
+            width="360"
+            height="165"
+            fill="url(#torn-map-fill-mobile)"
+          />
+          <ellipse cx="62" cy="36" rx="48" ry="20" fill="#c99c58" opacity="0.12" />
+          <ellipse cx="290" cy="128" rx="56" ry="22" fill="#b98945" opacity="0.14" />
+          <path
+            d={TORN_MAP_MOBILE_PATH}
+            fill="none"
+            stroke="#bf904c"
+            strokeWidth="10"
+            strokeOpacity="0.42"
+            strokeLinejoin="round"
+          />
+          <path
+            d={TORN_MAP_MOBILE_PATH}
+            fill="none"
+            stroke="#946528"
+            strokeWidth="4"
+            strokeOpacity="0.24"
+            strokeLinejoin="round"
+          />
+        </g>
+        <path
+          d={TORN_MAP_MOBILE_PATH}
+          fill="none"
+          stroke="#1b1b1f"
+          strokeWidth="2.5"
+          strokeLinejoin="round"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
+
+      {/* Desktop landscape SVG */}
+      <svg
+        viewBox="0 0 680 182"
+        preserveAspectRatio="none"
+        className="pointer-events-none absolute inset-0 hidden h-full w-full sm:block"
+        aria-hidden="true"
+      >
+        <defs>
+          <clipPath id="torn-map-clip-desktop">
+            <path d={TORN_MAP_DESKTOP_PATH} />
+          </clipPath>
+          <radialGradient id="torn-map-fill-desktop" cx="50%" cy="50%" r="65%">
+            <stop offset="0%" stopColor="#f7ebd0" />
+            <stop offset="68%" stopColor="#ecd5a4" />
             <stop offset="100%" stopColor="#d9b679" />
           </radialGradient>
         </defs>
 
-        <g clipPath="url(#torn-map-clip)">
-          <rect x="0" y="0" width="640" height="122" fill="url(#torn-map-fill)" />
+        <g clipPath="url(#torn-map-clip-desktop)">
+          <rect
+            x="0"
+            y="0"
+            width="680"
+            height="182"
+            fill="url(#torn-map-fill-desktop)"
+          />
 
-          {/* Subtle aged parchment smudges */}
-          <ellipse cx="90" cy="32" rx="70" ry="24" fill="#c99c58" opacity="0.12" />
-          <ellipse cx="535" cy="90" rx="85" ry="26" fill="#b98945" opacity="0.14" />
+          <ellipse cx="100" cy="40" rx="75" ry="28" fill="#c99c58" opacity="0.12" />
+          <ellipse cx="570" cy="142" rx="90" ry="30" fill="#b98945" opacity="0.14" />
 
-          {/* Warm aged inner bevel shading hugging the torn perimeter & V-notches */}
           <path
-            d={TORN_MAP_PATH}
+            d={TORN_MAP_DESKTOP_PATH}
             fill="none"
             stroke="#bf904c"
-            strokeWidth="14"
-            strokeOpacity="0.45"
+            strokeWidth="12"
+            strokeOpacity="0.42"
             strokeLinejoin="round"
           />
           <path
-            d={TORN_MAP_PATH}
+            d={TORN_MAP_DESKTOP_PATH}
             fill="none"
             stroke="#946528"
-            strokeWidth="5"
-            strokeOpacity="0.25"
+            strokeWidth="4.5"
+            strokeOpacity="0.24"
             strokeLinejoin="round"
           />
         </g>
 
-        {/* Crisp outer ink outline */}
         <path
-          d={TORN_MAP_PATH}
+          d={TORN_MAP_DESKTOP_PATH}
           fill="none"
           stroke="#1b1b1f"
           strokeWidth="2.5"
@@ -396,6 +458,76 @@ export function ShipHelmBadge({
         strokeWidth="2.6"
       />
       <circle cx="32" cy="32" r="2.1" fill="#1b1b1f" />
+    </svg>
+  );
+}
+
+/**
+ * Chunky brass compass & Luffy-red map pin badge matching ShipHelmBadge
+ * for venue Google Maps links.
+ */
+export function MapPinBadge({
+  className = "w-8 h-8",
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      fill="none"
+      className={className}
+      aria-hidden="true"
+    >
+      {/* Top brass ring loop like an old pirate pocket compass */}
+      <circle
+        cx="32"
+        cy="8"
+        r="5"
+        fill="#ffcc1f"
+        stroke="#1b1b1f"
+        strokeWidth="2.8"
+      />
+      {/* Outer iron & brass medallion bezel */}
+      <circle
+        cx="32"
+        cy="34"
+        r="24"
+        fill="#ffcc1f"
+        stroke="#1b1b1f"
+        strokeWidth="3.2"
+      />
+      {/* Warm parchment compass face */}
+      <circle
+        cx="32"
+        cy="34"
+        r="17.5"
+        fill="#fff8e6"
+        stroke="#1b1b1f"
+        strokeWidth="2.4"
+      />
+      {/* Subtle N/S/E/W compass tick marks */}
+      <g stroke="#8d5629" strokeWidth="2.2" strokeLinecap="round" opacity="0.65">
+        <line x1="32" y1="18.5" x2="32" y2="21.5" />
+        <line x1="32" y1="46.5" x2="32" y2="49.5" />
+        <line x1="16.5" y1="34" x2="19.5" y2="34" />
+        <line x1="44.5" y1="34" x2="47.5" y2="34" />
+      </g>
+      {/* Bold Luffy-red treasure map pin */}
+      <path
+        d="M32 21 C25.9 21 21 25.8 21 31.8 C21 39.2 32 49 32 49 C32 49 43 39.2 43 31.8 C43 25.8 38.1 21 32 21 Z"
+        fill="#d92626"
+        stroke="#1b1b1f"
+        strokeWidth="2.8"
+        strokeLinejoin="round"
+      />
+      <circle
+        cx="32"
+        cy="31.5"
+        r="4.2"
+        fill="#fff8e6"
+        stroke="#1b1b1f"
+        strokeWidth="2.2"
+      />
     </svg>
   );
 }

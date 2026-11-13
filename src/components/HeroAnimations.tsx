@@ -98,7 +98,7 @@ export default function HeroAnimations({
         yoyo: true,
       });
 
-      // Thousand Sunny silhouette: riding and gently pitching on the wave crest
+      // Thousand Sunny: riding and gently pitching on the wave crest
       gsap.to("[data-gsap='sunny']", {
         y: -8,
         rotation: 2.2,
@@ -107,6 +107,44 @@ export default function HeroAnimations({
         ease: "sine.inOut",
         repeat: -1,
         yoyo: true,
+      });
+
+      // Baby Einarr: subtle joyful breathing float & playful tilt (waist anchored behind the map)
+      gsap.fromTo(
+        "[data-gsap='baby']",
+        { y: 2, rotation: -1.1, scale: 1 },
+        {
+          y: -5,
+          rotation: 1.1,
+          scale: 1.015,
+          transformOrigin: "50% 92%",
+          duration: 3.1,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+        }
+      );
+
+      // Baby sparkles: soft staggered twinkle
+      const sparkles = gsap.utils.toArray<HTMLElement>(
+        "[data-gsap='baby-sparkle']",
+        root
+      );
+      sparkles.forEach((sparkle, i) => {
+        gsap.fromTo(
+          sparkle,
+          { scale: 0.72, opacity: 0.55, rotation: -8 },
+          {
+            scale: 1.12,
+            opacity: 1,
+            rotation: 10,
+            duration: 1.8 + i * 0.45,
+            delay: i * 0.4,
+            ease: "sine.inOut",
+            repeat: -1,
+            yoyo: true,
+          }
+        );
       });
     });
 
