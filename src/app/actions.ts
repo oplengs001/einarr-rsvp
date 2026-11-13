@@ -4,6 +4,7 @@ import { z } from "zod";
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { createRsvp, deleteRsvpById } from "@/lib/store";
+import { sendRsvpNotificationEmail } from "@/lib/email";
 import { EVENT_CONFIG, getEpithetForName, calculateBounty } from "@/config/event";
 
 const RsvpSchema = z.object({
@@ -85,6 +86,7 @@ export async function submitRsvpAction(
     });
 
     revalidatePath("/captain");
+    await sendRsvpNotificationEmail(record);
 
     return { ok: true, id: record.id };
   } catch (err) {
