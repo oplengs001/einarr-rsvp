@@ -224,16 +224,9 @@ function buildThemedEmailMessage(params: {
               : ""
           }
 
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:12px 0 0;">
-            <tr>
-              <td align="left" style="font-size:22px; font-weight:900; line-height:1; color:#2c1d11; text-align:left;">
-                &#3647; ${escapeHtml(bountyFormatted)}
-              </td>
-              <td align="right" style="font-size:22px; font-weight:900; line-height:1; color:#2c1d11; text-align:right;">
-                -
-              </td>
-            </tr>
-          </table>
+          <div style="margin:12px 0 0; text-align:center; font-size:22px; font-weight:900; line-height:1; color:#2c1d11;">
+            &#3647; ${escapeHtml(bountyFormatted)}-
+          </div>
 
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:12px 0 0; padding-top:4px;">
             <tr>

@@ -190,13 +190,10 @@ export default function WantedPoster({
                   </p>
                 )}
 
-                <div className="mt-2.5 flex items-center gap-1.5 px-1">
+                <div className="mt-2.5 flex items-center justify-center gap-1.5 px-1">
                   <BerrySymbol className="h-5 w-4 shrink-0 sm:h-6 sm:w-5" />
                   <span className="text-[21px] font-black leading-none tabular-nums sm:text-[26px]">
-                    {displayedBounty.toLocaleString("en-US")}
-                  </span>
-                  <span className="ml-auto text-[21px] font-black leading-none sm:text-[26px]">
-                    -
+                    {displayedBounty.toLocaleString("en-US")}-
                   </span>
                 </div>
               </div>
