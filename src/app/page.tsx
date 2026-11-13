@@ -56,7 +56,7 @@ export default function HomePage() {
               <div className="px-4 pb-5 pt-5 sm:px-9 sm:pb-8 sm:pt-7">
                 {/* Highlighted Date Banner */}
                 <div className="border-b border-ink/20 pb-2 text-center sm:pb-3">
-                  <p className="text-base font-black tracking-tight text-ink sm:text-2xl">
+                  <p className="font-display text-lg font-normal tracking-wide text-ink sm:text-2xl">
                     {EVENT_CONFIG.dateLong}
                   </p>
                 </div>
@@ -100,10 +100,10 @@ export default function HomePage() {
                       key={item.label}
                       className={`flex flex-col items-center ${item.colClass}`}
                     >
-                      <dt className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-wood sm:text-xs">
+                      <dt className="font-display text-xs font-normal uppercase tracking-[0.12em] text-wood sm:text-sm">
                         {item.label}
                       </dt>
-                      <dd className="mt-0.5 text-base font-black tracking-tight text-ink sm:text-xl">
+                      <dd className="mt-0.5 font-display text-lg font-normal tracking-wide text-ink sm:text-2xl">
                         {item.time}
                       </dd>
                       <dd className="mt-1.5 flex w-full flex-1 items-center justify-center py-0.5 sm:mt-2.5 sm:py-1">
@@ -117,7 +117,7 @@ export default function HomePage() {
                           <span>
                             {item.venue}{" "}
                             <span
-                              className="inline-block text-[10px] font-black text-sun sm:text-xs"
+                              className="inline-block text-[10px] text-sun sm:text-xs"
                               aria-hidden="true"
                             >
                               ↗

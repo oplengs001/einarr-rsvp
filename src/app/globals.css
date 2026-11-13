@@ -105,14 +105,14 @@ body {
   }
   .btn-plank-map {
     min-height: 2.4rem;
-    padding: 0.3rem 0.55rem 0.3rem 1.2rem;
+    padding: 0.34rem 0.55rem 0.34rem 1.2rem;
     white-space: normal;
     text-align: center;
-    font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-family: "Luckiest Guy", "Nunito", sans-serif;
     font-size: 0.625rem;
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: 0.01em;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0.03em;
     text-shadow: 1px 1px 0 #1b1b1f;
     border-width: 2px;
     border-radius: 8px;
@@ -132,10 +132,16 @@ body {
   @media (min-width: 640px) {
     .btn-plank-map {
       min-height: 0;
-      padding: 0.42rem 0.85rem 0.42rem 1.5rem;
+      padding: 0.44rem 0.7rem 0.4rem 1.4rem;
       white-space: nowrap;
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       line-height: 1.2;
+    }
+  }
+  @media (min-width: 768px) {
+    .btn-plank-map {
+      padding: 0.48rem 0.85rem 0.42rem 1.55rem;
+      font-size: 0.78rem;
     }
   }
 

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import confetti from "canvas-confetti";
 import { toPng } from "html-to-image";
+import DressCodePalette from "@/components/DressCodePalette";
 import WantedPoster from "@/components/WantedPoster";
 import { EVENT_CONFIG } from "@/config/event";
 import { RsvpRecord } from "@/lib/store";
@@ -32,12 +33,32 @@ export default function ThanksPosterClient({ rsvp }: { rsvp: RsvpRecord }) {
   }, [attending]);
 
   const handleDownload = async () => {
-    if (!posterRef.current) return;
+    const node = posterRef.current;
+    if (!node) return;
     setDownloading(true);
     try {
-      const dataUrl = await toPng(posterRef.current, {
-        cacheBust: true,
+      await document.fonts?.ready;
+      const imgs = Array.from(node.querySelectorAll("img"));
+      await Promise.all(
+        imgs.map((img) =>
+          typeof img.decode === "function"
+            ? img.decode().catch(() => {})
+            : Promise.resolve()
+        )
+      );
+
+      const rect = node.getBoundingClientRect();
+      const width = Math.ceil(rect.width);
+      const height = Math.ceil(rect.height);
+
+      const dataUrl = await toPng(node, {
+        width,
+        height,
         pixelRatio: 2,
+        style: {
+          margin: "0",
+          transform: "none",
+        },
       });
       const slug =
         rsvp.name
@@ -147,6 +168,17 @@ export default function ThanksPosterClient({ rsvp }: { rsvp: RsvpRecord }) {
               </dd>
             </div>
           ))}
+          <div className="px-5 py-3.5">
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <dt className="font-semibold text-ink/60">Dress code</dt>
+              <dd className="text-xs font-bold text-ink/60">
+                Come in any of our party colors
+              </dd>
+            </div>
+            <div className="mt-3">
+              <DressCodePalette compact />
+            </div>
+          </div>
         </dl>
 
         {rsvp.message && (

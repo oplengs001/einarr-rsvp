@@ -25,6 +25,7 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap"
           rel="stylesheet"
+          crossOrigin="anonymous"
         />
       </head>
       <body className="selection:bg-sun selection:text-ink">

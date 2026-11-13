@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import confetti from "canvas-confetti";
 import WantedPoster from "@/components/WantedPoster";
 import SelfiePicker from "@/components/SelfiePicker";
+import DressCodePalette from "@/components/DressCodePalette";
 import {
   EVENT_CONFIG,
   PIRATE_AVATARS,
@@ -369,6 +370,15 @@ export default function RsvpInteractive() {
             </div>
           </Field>
         )}
+
+        <Field label="Dress code" hint="Crew color palette">
+          <div className="rounded-xl border-2 border-dashed border-ink/25 bg-white/60 p-4">
+            <p className="mb-3.5 text-xs font-bold text-ink/75 sm:text-sm">
+              Come dressed in any of our party colors:
+            </p>
+            <DressCodePalette />
+          </div>
+        </Field>
 
         <Field label={`A note for ${EVENT_CONFIG.honoreeDisplay}`} hint="Optional" htmlFor="note">
           <textarea

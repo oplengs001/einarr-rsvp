@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { PIRATE_AVATARS } from "@/config/event";
 import { AttendanceStatus } from "@/lib/store";
 
@@ -89,39 +88,38 @@ export default function WantedPoster({
   const showNakama = attending === "yes" && plusOnes > 0;
 
   return (
-    <div ref={posterRef} className="mx-auto w-full max-w-[380px]">
-      <div
-        className="border-[3px] border-ink px-6 pb-5 pt-4 font-wanted text-ink"
-        style={{
-          background:
-            "radial-gradient(120% 90% at 50% 40%, #f4e6c3 0%, #ebd5a5 60%, #dcbf85 100%)",
-          boxShadow: "inset 0 0 42px rgba(120, 80, 30, 0.32), 8px 8px 0 #1b1b1f",
-        }}
-      >
-        <h3 className="text-center text-[52px] font-black leading-none tracking-tight sm:text-[64px]">
-          WANTED
-        </h3>
+    <div className="mx-auto w-full max-w-[404px]">
+      {/* Separate margin-free export container with 12px allowance so ink border & 8px shadow are never clipped */}
+      <div ref={posterRef} className="w-full p-3">
+        <div
+          className="border-[3px] border-ink px-6 pb-5 pt-4 font-wanted text-ink"
+          style={{
+            background:
+              "radial-gradient(120% 90% at 50% 40%, #f4e6c3 0%, #ebd5a5 60%, #dcbf85 100%)",
+            boxShadow: "inset 0 0 42px rgba(120, 80, 30, 0.32), 8px 8px 0 #1b1b1f",
+          }}
+        >
+          <h3 className="text-center text-[50px] font-black leading-none tracking-tight sm:text-[62px]">
+            WANTED
+          </h3>
 
-        <div className="mt-3 border-[3px] border-ink bg-[#111]">
-          <div className="relative aspect-[6/5] overflow-hidden">
-            {isSelfie ? (
-              <img
-                src={avatarId}
-                alt={displayName}
-                className="h-full w-full object-cover sepia-[0.16] contrast-[1.04]"
-              />
-            ) : (
-              <Image
-                src={avatar.iconSrc}
-                alt={avatar.label}
-                fill
-                sizes="380px"
-                unoptimized
-                className="object-contain"
-              />
-            )}
+          <div className="mt-3 border-[3px] border-ink bg-[#111]">
+            <div className="relative aspect-[6/5] overflow-hidden">
+              {isSelfie ? (
+                <img
+                  src={avatarId}
+                  alt={displayName}
+                  className="h-full w-full object-cover sepia-[0.16] contrast-[1.04]"
+                />
+              ) : (
+                <img
+                  src={avatar.iconSrc}
+                  alt={avatar.label}
+                  className="h-full w-full object-contain"
+                />
+              )}
+            </div>
           </div>
-        </div>
 
         <p className="mt-3 text-center text-[22px] font-bold tracking-[0.18em]">
           {attending === "no" ? "IN SPIRIT" : "DEAD OR ALIVE"}
@@ -159,7 +157,8 @@ export default function WantedPoster({
             sonota no soshiki to wa issai kankei arimasen. December 6 · GDLS
             Kubo Residences.
           </p>
-          <span className="text-sm font-black tracking-[0.2em]">MARINE</span>
+            <span className="text-sm font-black tracking-[0.2em]">MARINE</span>
+          </div>
         </div>
       </div>
     </div>

@@ -15,6 +15,21 @@ export const EVENT_CONFIG = {
   maxPlusOnes: 2,
 } as const;
 
+export interface DressCodeColor {
+  name: string;
+  hex: string;
+  shineHex: string;
+}
+
+export const DRESS_CODE_COLORS: DressCodeColor[] = [
+  { name: "White", hex: "#FFFFFF", shineHex: "#DCE8F5" },
+  { name: "Cream", hex: "#EFE2C2", shineHex: "#FFFDF6" },
+  { name: "Sky Blue", hex: "#53B2E6", shineHex: "#BCE6FB" },
+  { name: "Navy Blue", hex: "#164A8A", shineHex: "#5589C7" },
+  { name: "Crimson", hex: "#931D20", shineHex: "#D15356" },
+  { name: "Brown", hex: "#6E3E1F", shineHex: "#A66E49" },
+];
+
 export interface PirateAvatar {
   id: string;
   shortName: string;
