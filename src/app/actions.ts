@@ -3,8 +3,9 @@
 import { z } from "zod";
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
 import { createRsvp, deleteRsvpById } from "@/lib/store";
-import { sendRsvpNotificationEmail } from "@/lib/email";
+import { sendRsvpEmails } from "@/lib/email";
 import { EVENT_CONFIG, getEpithetForName, calculateBounty } from "@/config/event";
 
 const RsvpSchema = z.object({
@@ -38,6 +39,15 @@ const RsvpSchema = z.object({
     .string()
     .trim()
     .max(350, "Message in a bottle can only hold 350 characters!")
+    .optional(),
+  email: z
+    .string()
+    .trim()
+    .max(120, "Email address is too long.")
+    .refine(
+      (val) => val === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
+      "Please enter a valid email address or leave it blank."
+    )
     .optional(),
   honeypot: z.string().optional(),
 });
@@ -86,7 +96,15 @@ export async function submitRsvpAction(
     });
 
     revalidatePath("/captain");
-    await sendRsvpNotificationEmail(record);
+
+    const guestEmail = data.email && data.email.length > 0 ? data.email : null;
+    after(async () => {
+      try {
+        await sendRsvpEmails(record, guestEmail);
+      } catch (err) {
+        console.error("Background RSVP email dispatch failed:", err);
+      }
+    });
 
     return { ok: true, id: record.id };
   } catch (err) {

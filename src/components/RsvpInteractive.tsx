@@ -72,6 +72,7 @@ export default function RsvpInteractive() {
   const [selfie, setSelfie] = useState<string | null>(null);
   const [attending, setAttending] = useState<AttendanceStatus>("yes");
   const [plusOnes, setPlusOnes] = useState(0);
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -101,6 +102,7 @@ export default function RsvpInteractive() {
         avatar: selfie ?? avatarId,
         attending,
         plus_ones: effectivePlusOnes,
+        email: email.trim(),
         message: message.trim(),
         honeypot,
       });
@@ -378,6 +380,27 @@ export default function RsvpInteractive() {
             </p>
             <DressCodePalette />
           </div>
+        </Field>
+
+        <Field
+          label="Your email"
+          hint="Optional · Get your poster & calendar invite"
+          htmlFor="pirate-email"
+        >
+          <input
+            id="pirate-email"
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setError(null);
+            }}
+            placeholder="e.g. you@example.com"
+            maxLength={120}
+            autoComplete="email"
+            enterKeyHint="done"
+            className="w-full rounded-lg border-[3px] border-ink bg-white px-4 py-3 text-base font-bold text-ink outline-none transition placeholder:font-semibold placeholder:text-ink/35 focus:ring-4 focus:ring-sun/70"
+          />
         </Field>
 
         <Field label={`A note for ${EVENT_CONFIG.honoreeDisplay}`} hint="Optional" htmlFor="note">

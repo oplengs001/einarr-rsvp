@@ -8,6 +8,7 @@ import { toPng } from "html-to-image";
 import DressCodePalette from "@/components/DressCodePalette";
 import WantedPoster from "@/components/WantedPoster";
 import { EVENT_CONFIG } from "@/config/event";
+import { buildGoogleCalendarUrl } from "@/lib/calendar";
 import { RsvpRecord } from "@/lib/store";
 
 export default function ThanksPosterClient({ rsvp }: { rsvp: RsvpRecord }) {
@@ -162,6 +163,19 @@ export default function ThanksPosterClient({ rsvp }: { rsvp: RsvpRecord }) {
                   >
                     {value} ↗
                   </a>
+                ) : label === "When" && attending ? (
+                  <span>
+                    {value}
+                    <br />
+                    <a
+                      href={buildGoogleCalendarUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-extrabold text-wood underline decoration-wood/40 decoration-2 underline-offset-4 transition hover:text-luffy hover:decoration-luffy"
+                    >
+                      Add to Google Calendar ↗
+                    </a>
+                  </span>
                 ) : (
                   value
                 )}
