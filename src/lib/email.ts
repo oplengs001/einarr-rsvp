@@ -183,14 +183,14 @@ function buildThemedEmailMessage(params: {
   const wantedFont = "'Playfair Display', Georgia, 'Times New Roman', serif";
 
   const posterHtml = `
-    <table role="presentation" width="340" align="center" cellpadding="0" cellspacing="0" style="width:100%; max-width:340px; margin:0 auto 24px; background-color:#ebd5a5; background-image:radial-gradient(circle at 50% 40%, #f4e6c3 0%, #ebd5a5 60%, #dcbf85 100%); border:3px solid #1b1b1f; box-shadow:6px 6px 0 #1b1b1f; font-family:${wantedFont}; color:#1b1b1f;">
+    <table role="presentation" width="340" align="center" cellpadding="0" cellspacing="0" style="width:100%; max-width:340px; margin:0 auto 24px; background-color:#dfc48e; background-image:radial-gradient(circle at 50% 42%, #efe0b9 0%, #dfc48e 58%, #be9960 100%); border:3px solid #1b1b1f; box-shadow:6px 6px 0 #1b1b1f; font-family:${wantedFont}; color:#2c1d11;">
       <tr>
-        <td align="center" style="padding:16px 20px 18px; text-align:center;">
-          <div style="font-size:44px; font-weight:900; line-height:1; letter-spacing:2px; color:#1b1b1f; margin:0 0 10px;">
+        <td align="center" style="padding:14px 18px 16px; text-align:center;">
+          <div style="font-size:52px; font-weight:900; line-height:0.95; letter-spacing:3px; color:#2c1d11; margin:0 0 10px;">
             WANTED
           </div>
 
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:3px solid #1b1b1f; background-color:#111111; margin:0 auto;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:3px solid #2c1d11; background-color:#111111; margin:0 auto;">
             <tr>
               <td align="center" style="padding:0; text-align:center; background-color:#111111;">
                 ${
@@ -206,7 +206,7 @@ function buildThemedEmailMessage(params: {
             </tr>
           </table>
 
-          <div style="margin:12px 0 4px; font-size:17px; font-weight:700; letter-spacing:4px; color:#1b1b1f;">
+          <div style="margin:11px 0 4px; font-size:18px; font-weight:900; letter-spacing:4px; color:#2c1d11;">
             ${attending ? "DEAD OR ALIVE" : "IN SPIRIT"}
           </div>
 
@@ -214,7 +214,7 @@ function buildThemedEmailMessage(params: {
             &ldquo;${escapeHtml(record.epithet)}&rdquo;
           </div>
 
-          <div style="margin:0; font-size:${record.name.trim().length > 14 ? "20px" : "26px"}; font-weight:900; line-height:1.15; letter-spacing:1px; color:#1b1b1f; word-break:break-word;">
+          <div style="margin:0; font-size:${record.name.trim().length > 14 ? "20px" : "26px"}; font-weight:900; line-height:1.15; letter-spacing:1px; color:#2c1d11; word-break:break-word;">
             ${escapeHtml(displayName)}
           </div>
 
@@ -226,21 +226,21 @@ function buildThemedEmailMessage(params: {
 
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:12px 0 0;">
             <tr>
-              <td align="left" style="font-size:22px; font-weight:900; line-height:1; color:#1b1b1f; text-align:left;">
+              <td align="left" style="font-size:22px; font-weight:900; line-height:1; color:#2c1d11; text-align:left;">
                 &#3647; ${escapeHtml(bountyFormatted)}
               </td>
-              <td align="right" style="font-size:22px; font-weight:900; line-height:1; color:#1b1b1f; text-align:right;">
+              <td align="right" style="font-size:22px; font-weight:900; line-height:1; color:#2c1d11; text-align:right;">
                 -
               </td>
             </tr>
           </table>
 
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:12px 0 0; border-top:1px solid #9f8a64; padding-top:8px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:12px 0 0; padding-top:4px;">
             <tr>
-              <td align="left" style="font-size:7px; text-transform:uppercase; line-height:1.25; color:#6b573b; text-align:left; padding-right:10px;">
+              <td align="left" style="font-size:6.5px; font-weight:700; text-transform:uppercase; line-height:1.25; color:#5a4630; text-align:left; padding-right:10px;">
                 Kono sakuhin wa fiction desu node jitsuzai suru jinbutsu dantai sonota no soshiki to wa issai kankei arimasen. ${escapeHtml(EVENT_CONFIG.dateDisplay)} &middot; ${escapeHtml(EVENT_CONFIG.venueDisplay)}.
               </td>
-              <td align="right" valign="bottom" style="font-size:12px; font-weight:900; letter-spacing:2px; color:#1b1b1f; text-align:right; white-space:nowrap;">
+              <td align="right" valign="bottom" style="font-size:13px; font-weight:900; letter-spacing:2px; color:#2c1d11; text-align:right; white-space:nowrap;">
                 MARINE
               </td>
             </tr>

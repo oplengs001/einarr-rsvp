@@ -43,6 +43,42 @@ export function BerrySymbol({ className = "w-6 h-6" }: { className?: string }) {
   );
 }
 
+/** Authentic One Piece two-part S-curve calligraphic scroll flourishes along the poster sides. */
+function SideScrolls({ mirror = false }: { mirror?: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 32 216"
+      fill="none"
+      className={`pointer-events-none h-full w-6 shrink-0 select-none sm:w-7 ${
+        mirror ? "-scale-x-100" : ""
+      }`}
+      aria-hidden="true"
+    >
+      {/* Top S-scroll flanking DEAD OR ALIVE */}
+      <path
+        d="M21 17 C24 11, 15 6, 11 14 C7 22, 13 38, 17 54 C21 70, 19 88, 12 94 C7 97, 5 90, 9 86"
+        stroke="#2c1d11"
+        strokeWidth="3.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="21" cy="17" r="3.4" fill="#2c1d11" />
+      <circle cx="9.5" cy="87" r="3" fill="#2c1d11" />
+
+      {/* Bottom S-scroll flanking Name, Bounty & bottom legal/MARINE bar */}
+      <path
+        d="M20 113 C24 107, 15 103, 11 112 C6 124, 10 144, 14 164 C17 182, 14 198, 13 204 C13 210, 22 211, 24 203 C25 198, 20 195, 18 198"
+        stroke="#2c1d11"
+        strokeWidth="3.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="20" cy="113" r="3.2" fill="#2c1d11" />
+      <circle cx="20" cy="201" r="4" fill="#2c1d11" />
+    </svg>
+  );
+}
+
 /** Animates a number toward its target value. */
 function useCountUp(target: number, duration = 350) {
   const [value, setValue] = useState(target);
@@ -92,18 +128,24 @@ export default function WantedPoster({
       {/* Separate margin-free export container with 12px allowance so ink border & 8px shadow are never clipped */}
       <div ref={posterRef} className="w-full p-3">
         <div
-          className="border-[3px] border-ink px-6 pb-5 pt-4 font-wanted text-ink"
+          className="border-[3px] border-ink px-5 pb-4 pt-4 font-wanted text-[#2c1d11]"
           style={{
             background:
-              "radial-gradient(120% 90% at 50% 40%, #f4e6c3 0%, #ebd5a5 60%, #dcbf85 100%)",
-            boxShadow: "inset 0 0 42px rgba(120, 80, 30, 0.32), 8px 8px 0 #1b1b1f",
+              "radial-gradient(115% 88% at 50% 42%, #efe0b9 0%, #dfc48e 58%, #be9960 100%)",
+            boxShadow:
+              "inset 0 0 46px rgba(68, 42, 16, 0.42), 8px 8px 0 #1b1b1f",
           }}
         >
-          <h3 className="text-center text-[50px] font-black leading-none tracking-tight sm:text-[62px]">
-            WANTED
+          <h3 className="overflow-hidden py-1 text-center">
+            <span
+              className="inline-block origin-center scale-y-[1.16] text-[58px] font-black leading-[0.88] tracking-[0.04em] sm:text-[70px]"
+              style={{ WebkitTextStroke: "0.8px #2c1d11" }}
+            >
+              WANTED
+            </span>
           </h3>
 
-          <div className="mt-3 border-[3px] border-ink bg-[#111]">
+          <div className="mt-2 border-[3px] border-[#2c1d11] bg-[#111]">
             <div className="relative aspect-[6/5] overflow-hidden">
               {isSelfie ? (
                 <img
@@ -121,43 +163,57 @@ export default function WantedPoster({
             </div>
           </div>
 
-        <p className="mt-3 text-center text-[22px] font-bold tracking-[0.18em]">
-          {attending === "no" ? "IN SPIRIT" : "DEAD OR ALIVE"}
-        </p>
+          <div className="relative mt-2.5 flex items-stretch justify-between gap-1">
+            <SideScrolls />
 
-        <p className="mt-2 text-center text-sm italic text-ink/70">
-          &ldquo;{epithet}&rdquo;
-        </p>
-        <p
-          className={`text-center font-black leading-tight tracking-wide [overflow-wrap:anywhere] ${
-            trimmedName.length > 14 ? "text-[22px]" : "text-[30px]"
-          } ${trimmedName ? "" : "text-ink/30"}`}
-        >
-          {displayName}
-        </p>
-        {showNakama && (
-          <p className="text-center text-sm font-bold text-ink/70">
-            and {plusOnes} nakama
-          </p>
-        )}
+            <div className="flex min-w-0 flex-1 flex-col justify-between py-0.5">
+              <div>
+                <p className="text-center text-[19px] font-black tracking-[0.18em] sm:text-[22px]">
+                  {attending === "no" ? "IN SPIRIT" : "DEAD OR ALIVE"}
+                </p>
 
-        <div className="mt-3 flex items-center gap-2">
-          <BerrySymbol className="h-6 w-5 shrink-0 sm:h-7 sm:w-6" />
-          <span className="text-[24px] font-black leading-none tabular-nums sm:text-[30px]">
-            {displayedBounty.toLocaleString("en-US")}
-          </span>
-          <span className="ml-auto text-[24px] font-black leading-none sm:text-[30px]">
-            -
-          </span>
-        </div>
+                <p className="mt-1.5 text-center text-xs italic text-[#2c1d11]/80 sm:text-sm">
+                  &ldquo;{epithet}&rdquo;
+                </p>
+                <p
+                  className={`text-center font-black leading-tight tracking-wide [overflow-wrap:anywhere] ${
+                    trimmedName.length > 14
+                      ? "text-[19px] sm:text-[21px]"
+                      : "text-[25px] sm:text-[29px]"
+                  } ${trimmedName ? "" : "text-[#2c1d11]/35"}`}
+                >
+                  {displayName}
+                </p>
+                {showNakama && (
+                  <p className="text-center text-xs font-bold text-[#2c1d11]/80 sm:text-sm">
+                    and {plusOnes} nakama
+                  </p>
+                )}
 
-        <div className="mt-3 flex items-end justify-between gap-3 border-t border-ink/30 pt-2">
-          <p className="max-w-[220px] text-[6.5px] uppercase leading-[1.25] text-ink/55">
-            Kono sakuhin wa fiction desu node jitsuzai suru jinbutsu dantai
-            sonota no soshiki to wa issai kankei arimasen. December 6 · GDLS
-            Kubo Residences.
-          </p>
-            <span className="text-sm font-black tracking-[0.2em]">MARINE</span>
+                <div className="mt-2.5 flex items-center gap-1.5 px-1">
+                  <BerrySymbol className="h-5 w-4 shrink-0 sm:h-6 sm:w-5" />
+                  <span className="text-[21px] font-black leading-none tabular-nums sm:text-[26px]">
+                    {displayedBounty.toLocaleString("en-US")}
+                  </span>
+                  <span className="ml-auto text-[21px] font-black leading-none sm:text-[26px]">
+                    -
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-3 flex items-end justify-between gap-2 pt-1">
+                <p className="max-w-[165px] text-[5.5px] font-bold uppercase leading-[1.2] text-[#2c1d11]/75 sm:max-w-[180px] sm:text-[6px]">
+                  Kono sakuhin wa fiction desu node jitsuzai suru jinbutsu
+                  dantai sonota no soshiki to wa issai kankei arimasen. December
+                  6 &middot; GDLS Kubo Residences.
+                </p>
+                <span className="shrink-0 text-sm font-black tracking-[0.16em] sm:text-base">
+                  MARINE
+                </span>
+              </div>
+            </div>
+
+            <SideScrolls mirror />
           </div>
         </div>
       </div>
