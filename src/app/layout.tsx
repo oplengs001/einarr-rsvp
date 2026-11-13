@@ -3,9 +3,45 @@ import "./globals.css";
 import { EVENT_CONFIG } from "@/config/event";
 import BinksAudioPlayer from "@/components/BinksAudioPlayer";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000");
+
+const title = `${EVENT_CONFIG.honoreeDisplay}'s Christening — RSVP`;
+const description = `Join the crew for ${EVENT_CONFIG.honoreeDisplay}'s christening on ${EVENT_CONFIG.dateLong} (${EVENT_CONFIG.baptismalTime} Baptismal at ${EVENT_CONFIG.baptismalVenue} · ${EVENT_CONFIG.receptionTime} Reception at ${EVENT_CONFIG.venueDisplay}).`;
+
 export const metadata: Metadata = {
-  title: `${EVENT_CONFIG.honoreeDisplay}'s Christening — RSVP`,
-  description: `Join the crew for ${EVENT_CONFIG.honoreeDisplay}'s christening on ${EVENT_CONFIG.dateLong} at ${EVENT_CONFIG.venueDisplay}.`,
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  icons: {
+    icon: "/op-icons/jolly-roger.png",
+    apple: "/op-icons/jolly-roger.png",
+  },
+  openGraph: {
+    title,
+    description,
+    type: "website",
+    siteName: `${EVENT_CONFIG.honoreeDisplay}'s ${EVENT_CONFIG.occasion}`,
+    images: [
+      {
+        url: "/og-banner.jpg",
+        width: 1024,
+        height: 605,
+        alt: `${EVENT_CONFIG.honoreeDisplay}'s ${EVENT_CONFIG.occasion} — Crew Invitation Banner`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/og-banner.jpg"],
+  },
 };
 
 export default function RootLayout({
