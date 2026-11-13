@@ -11,7 +11,7 @@ export const EVENT_CONFIG = {
   receptionTime: "12:00 NOON",
   venueName: "GDLS KUBO RESIDENCES",
   venueDisplay: "GDLS Kubo Residences",
-  venueMapUrl: "https://maps.app.goo.gl/J7jyT6yEiWi1Qfz9A",
+  venueMapUrl: "https://maps.app.goo.gl/UBvom2fMZxUdY5Ay5",
   maxPlusOnes: 2,
 } as const;
 
